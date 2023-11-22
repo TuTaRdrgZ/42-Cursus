@@ -6,25 +6,32 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/21 12:54:40 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/22 18:47:42 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME: push_swap
-SRCS: push_swap.c sort.c util.c check_args.c
+SRCS: main.c \
+	sort.c \
+	more_utils.c \
+	util.c \
+	check_args.c
+	
 OBJS: $(SRCS:.c=.o)
 CC: gcc
 CFLAGS: -Wall -Wextra -Werror
 
-%.o:%.c Makefile push_swap.h
-	$(CC) $(CFLAGS) -c $< -o $@
-	
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) push_swap.h -o $(NAME)
-
 all: $(NAME)
 
+%.o:%.c Makefile
+	$(CC) $(FLAGS) -I ./ -c $(OBJS) -o $@
+
+$(NAME): $(OBJS)
+	${MAKE} -C ./libft
+	$(CC) $(CFLAGS) $(OBJS) push_swap.h ./libft/libft.a -o $(NAME)
+
 clean:
+	${MAKE} -C ./libft fclean
 	rm -f $(OBJS)
 
 fclean: clean

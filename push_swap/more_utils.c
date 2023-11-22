@@ -1,48 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   more_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 19:03:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 17:44:15 by bautrodr         ###   ########.fr       */
+/*   Created: 2023/11/22 15:13:00 by bautrodr          #+#    #+#             */
+/*   Updated: 2023/11/22 15:52:36 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_free_stack(t_stack *stack)
+void	ft_error(char *msg)
 {
-	t_stack	*tmp;
-
-	while (stack)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
+	ft_putendl_fd(msg, 1);
+	exit(0);
 }
 
-int	ft_strlen(char *str)
+void	ft_free(char **str)
 {
 	int	i;
-
+	
 	i = 0;
 	while (str[i])
 		i++;
-	return (i);
+	while (i >= 0)
+		free(str[i--]);
 }
 
-int	ft_lstsize(t_stack *stack)
+void	free_stack(t_stack **stack)
 {
-	int	i;
+	t_stack	*head;
+	t_stack	*tmp;
 
-	i = 0;
-	while (stack->next != NULL)
+	head = *stack;
+	while (head)
 	{
-		stack = stack->next;
-		i++;
+		tmp = head;
+		head = head->next;
+		free(tmp);
 	}
-	return (i);
+	free(stack);
+}
+
+int	is_sorted(t_stack **stack)
+{
+	t_stack	*head;
+
+	head = *stack;
+	while (head->next != NULL)
+	{
+		if (head->value > head->next->value)
+			return (0);
+		head = head->next;
+	}
+	return (1);
 }
