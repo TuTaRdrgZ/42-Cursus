@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 11:37:07 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 18:53:14 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:04:29 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "../push_swap.h"
 
-typedef struct s_stack
-{
-	int				value;
-	int				index;
-	struct s_stack	*next;
-}					t_stack;
-
-t_stack			*ft_lstnew(void *content);
-t_stack			*ft_lstlast(t_stack *lst);
-int				ft_lstsize(t_stack *lst);
-void			ft_lstadd_back(t_stack **lst, t_stack *new);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);

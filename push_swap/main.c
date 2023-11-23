@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:00:22 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 17:41:25 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:37:06 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	init_stack(t_stack **stack, int argc, char **argv)
 
 	i = 0;
 	if (argc == 2)
-		args = ft_split(argv[1]);
+		args = ft_split(argv[1], ' ');
 	else
 	{
 		i = 1;

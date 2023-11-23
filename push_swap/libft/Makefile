@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/06 10:11:46 by bautrodr          #+#    #+#              #
-#    Updated: 2023/09/21 15:58:43 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/23 12:04:12 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,22 +46,9 @@ SRCS = ft_calloc.c \
 	   ft_putendl_fd.c \
 	   ft_putnbr_fd.c
 
-SRCS_BONUS = ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstmap.c
-
 FLAGS = -Wall -Wextra -Werror -MMD 
 OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 DEPS = $(SRCS:.c=.d)
-DEPS_BONUS = $(SRCS_BONUS:.c=.d)
-BONUS = .bonus
 all: $(NAME)
 CC = gcc
 
@@ -71,21 +58,13 @@ CC = gcc
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-bonus: $(BONUS)
-	
-$(BONUS): $(OBJS) $(OBJS_BONUS)
-	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-	touch $@
-
 clean:
-	rm -f $(OBJS) $(OBJS_BONUS) $(DEPS) $(DEPS_BONUS)
-
+	rm -f $(OBJS) $(DEPS)
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
 -include $(DEPS)
--include $(DEPS_BONUS)
 
 .PHONY: all clean fclean re bonus 

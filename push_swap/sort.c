@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s.c                                                :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:29:28 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 18:29:55 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:45:32 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	swap(t_stack **stack)
 	return (0);
 }
 
-int	push(t_list **stack_to, t_list **stack_from)
+int	push(t_stack **stack_to, t_stack **stack_from)
 {
-	t_list	*tmp;
-	t_list	*head_to;
-	t_list	*head_from;
+	t_stack	*tmp;
+	t_stack	*head_to;
+	t_stack	*head_from;
 
 	if (ft_lstsize(*stack_from) == 0)
 		return (-1);

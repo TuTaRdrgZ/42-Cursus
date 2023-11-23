@@ -1,41 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   instructions_p.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 18:23:11 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 18:25:55 by bautrodr         ###   ########.fr       */
+/*   Created: 2023/11/23 14:12:33 by bautrodr          #+#    #+#             */
+/*   Updated: 2023/11/23 14:12:57 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sa(t_stack **stack_a)
+int	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	if (swap(stack_a) == -1)
+	if (!((*stack_b)->next))
 		return (-1);
-	ft_putendl_fd("sa", 1);
+	push(stack_a, stack_b);
+	ft_putendl_fd("pa", 1);
 	return (0);
 }
 
-int	sb(t_stack **stack_b)
+int	pb(t_stack **stack_b, t_stack **stack_a)
 {
-	if (swap(stack_b) == -1)
+	if (!((*stack_a)->next))
 		return (-1);
-	ft_putendl_fd("sb", 1);
+	push(stack_b, stack_a);
+	ft_putendl_fd("pb", 1);
 	return (0);
 }
 
-int	ss(t_stack **stack_a, t_stack **stack_b)
+int	pp(t_stack **stack_a, t_stack **stack_b)
 {
-	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+	int	tmp_value;
+
+	if (!(*stack_a) || !(*stack_b) || !((*stack_a)->next) || !((*stack_b)->next))
 		return (-1);
-	sa(stack_a);
-	sb(stack_b);
-	ft_putendl_fd("ss", 1);
-	return (0);
+	tmp_value = (*stack_a)->value;
+	pa(stack_a, stack_b);
+	pb(stack_b, stack_a);
+	(*stack_a)->value = tmp_value;
 }
-
-
