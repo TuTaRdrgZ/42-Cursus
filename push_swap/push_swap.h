@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:51:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/24 13:03:04 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:37:45 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct s_stack
 {
@@ -39,6 +39,10 @@ int		pa(t_list **stack_a, t_list **stack_b);
 void	ra(t_list **stack_a);
 void	rb(t_list **stack);
 void	rr(t_list **stack_a, t_list **stack_b);
+void	rra(t_list **stack_a);
+void	rrb(t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
+void	index_stack(t_list **stack);
 void	ft_error(char *msg);
 void	ft_free(char **str);
 void	index_stack(t_list **stack);

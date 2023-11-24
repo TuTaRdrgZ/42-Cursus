@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:03:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 17:44:15 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:37:52 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,4 @@ void	ft_free_stack(t_list *stack)
 		free(stack);
 		stack = tmp;
 	}
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_lstsize(t_list *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack->next != NULL)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
 }

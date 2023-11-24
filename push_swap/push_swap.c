@@ -6,11 +6,9 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:01:39 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/24 12:50:40 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:51:20 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
 
 #include "push_swap.h"
 
@@ -39,6 +37,15 @@ static void	init_list(t_list **stack, int argc, char **argv)
 		ft_free(args);
 }
 
+static void	sort_stack(t_list **stack_a, t_list **stack_b)
+{
+	if (ft_lstsize(*stack_a) <= 5)
+		simple_sort(stack_a, stack_b);
+	else
+		return ;
+		//radix_sort(stack_a, stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	**stack_a;
@@ -58,7 +65,7 @@ int	main(int argc, char **argv)
 		free_stack(stack_b);
 		return (0);
 	}
-	sort_list(stack_a, stack_b);
+	sort_stack(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

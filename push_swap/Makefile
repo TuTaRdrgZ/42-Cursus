@@ -6,12 +6,12 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/24 12:57:32 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/24 15:36:40 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME: push_swap
-SRCS: main.c \
+NAME = push_swap
+SRCS = push_swap.c \
 	sort.c \
 	more_utils.c \
 	util.c \
@@ -19,29 +19,36 @@ SRCS: main.c \
 	instructions_p.c \
 	instructions_s.c \
 	instructions_r.c \
-	t_stack.c
+	instructions_rr.c \
+	t_list.c \
+	index.c
 
-INCLUDE_LIBFT = -L ./libft -lft
-INCLUDE_FT_PRINTF = -L ./ft_printf -lft
-LIBFT_DIR = libft/
-OBJS: $(SRCS:.c=.o)
-CC: gcc
-CFLAGS: -Wall -Wextra -Werror
+INCLUDE_LIBFT = ./libft/libft.a 
+INCLUDE_FT_PRINTF = ./ft_printf/ft_printf.a
+LIBFT_DIR = ./libft
+PRINTF_DIR = ./ft_printf
+OBJS = $(SRCS:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o}
+	$(CC) -c $< -o $@
 
-${NAME}: ${OBJS}
-	make -C $(LIBFTDIR)
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${INCLUDE_LIBF} ${INCLUDE_FT_PRINTF}
+$(NAME): $(OBJS)
+	make -C $(LIBFT_DIR)
+	make -C $(PRINTF_DIR)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf
 
 clean:
-	${MAKE} -C ./libft fclean
+	make -C $(LIBFT_DIR) clean
+	make -C $(PRINTF_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
+	make -C $(LIBFT_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all

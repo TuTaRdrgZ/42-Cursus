@@ -6,16 +6,11 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:49:24 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 15:16:33 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:41:42 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_isdigit(char c)
-{
-	return (c >= '0' && c <= 'z');
-}
 
 int	ft_isnum(char *str)
 {
