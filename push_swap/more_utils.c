@@ -29,10 +29,10 @@ void	ft_free(char **str)
 		free(str[i--]);
 }
 
-void	free_stack(t_stack **stack)
+void	free_stack(t_list **stack)
 {
-	t_stack	*head;
-	t_stack	*tmp;
+	t_list	*head;
+	t_list	*tmp;
 
 	head = *stack;
 	while (head)
@@ -44,9 +44,9 @@ void	free_stack(t_stack **stack)
 	free(stack);
 }
 
-int	is_sorted(t_stack **stack)
+int	is_sorted(t_list **stack)
 {
-	t_stack	*head;
+	t_list	*head;
 
 	head = *stack;
 	while (head->next != NULL)

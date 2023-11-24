@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/22 18:47:42 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/24 12:57:32 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,27 @@ SRCS: main.c \
 	sort.c \
 	more_utils.c \
 	util.c \
-	check_args.c
-	
+	check_args.c \
+	instructions_p.c \
+	instructions_s.c \
+	instructions_r.c \
+	t_stack.c
+
+INCLUDE_LIBFT = -L ./libft -lft
+INCLUDE_FT_PRINTF = -L ./ft_printf -lft
+LIBFT_DIR = libft/
 OBJS: $(SRCS:.c=.o)
 CC: gcc
 CFLAGS: -Wall -Wextra -Werror
 
 all: $(NAME)
 
-%.o:%.c Makefile
-	$(CC) $(FLAGS) -I ./ -c $(OBJS) -o $@
+.c.o:
+	${CC} -c $< -o ${<:.c=.o}
 
-$(NAME): $(OBJS)
-	${MAKE} -C ./libft
-	$(CC) $(CFLAGS) $(OBJS) push_swap.h ./libft/libft.a -o $(NAME)
+${NAME}: ${OBJS}
+	make -C $(LIBFTDIR)
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME} ${INCLUDE_LIBF} ${INCLUDE_FT_PRINTF}
 
 clean:
 	${MAKE} -C ./libft fclean

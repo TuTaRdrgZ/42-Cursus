@@ -1,48 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 19:03:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 17:44:15 by bautrodr         ###   ########.fr       */
+/*   Created: 2023/09/24 20:27:38 by bautrodr          #+#    #+#             */
+/*   Updated: 2023/09/26 10:28:02 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/ft_printf.h"
 
-void	ft_free_stack(t_list *stack)
+int	ft_printf(char const *format, ...)
 {
-	t_list	*tmp;
-
-	while (stack)
-	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
-	}
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
+	int		i;
+	int		j;
+	va_list	args;
 
 	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_lstsize(t_list *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack->next != NULL)
+	j = -1;
+	va_start(args, format);
+	while (format[++j])
 	{
-		stack = stack->next;
-		i++;
+		if (format[j] == '%')
+		{
+			j++;
+			if (ft_strchr("cspdiuxX%", format[j]))
+				i = check_format(args, format, i, j);
+		}
+		else
+			i = ft_putchar(format[j], i);
+		if (i == -1)
+			return (-1);
 	}
+	va_end(args);
 	return (i);
 }

@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 18:23:11 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/23 14:12:12 by bautrodr         ###   ########.fr       */
+/*   Created: 2023/09/24 22:36:03 by bautrodr          #+#    #+#             */
+/*   Updated: 2023/09/26 10:41:35 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/ft_printf.h"
 
-int	sa(t_list **stack_a)
+int	ft_putnbr(int nb, int i)
 {
-	if (swap(stack_a) == -1)
+	if (i == -1)
 		return (-1);
-	ft_putendl_fd("sa", 1);
-	return (0);
-}
-
-int	sb(t_list **stack_b)
-{
-	if (swap(stack_b) == -1)
-		return (-1);
-	ft_putendl_fd("sb", 1);
-	return (0);
-}
-
-int	ss(t_list **stack_a, t_list **stack_b)
-{
-	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
-		return (-1);
-	sa(stack_a);
-	sb(stack_b);
-	ft_putendl_fd("ss", 1);
-	return (0);
+	if (nb <= -2147483648)
+	{
+		i = ft_putchar('-', i);
+		i = ft_putchar('2', i);
+		i = ft_putnbr(147483648, i);
+	}
+	else if (nb < 0)
+	{
+		i = ft_putchar('-', i);
+		i = ft_putnbr(-nb, i);
+	}
+	else if (nb > 9)
+	{
+		i = ft_putnbr(nb / 10, i);
+		i = ft_putnbr(nb % 10, i);
+	}
+	else
+		i = ft_putchar(nb + '0', i);
+	return (i);
 }

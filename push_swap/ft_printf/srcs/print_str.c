@@ -1,48 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 19:03:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 17:44:15 by bautrodr         ###   ########.fr       */
+/*   Created: 2023/09/24 22:34:41 by bautrodr          #+#    #+#             */
+/*   Updated: 2023/09/26 09:50:13 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/ft_printf.h"
 
-void	ft_free_stack(t_list *stack)
+int	print_str(const char *str, int i)
 {
-	t_list	*tmp;
-
-	while (stack)
+	if (str == NULL)
 	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		i += 6;
+		return (i);
 	}
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_lstsize(t_list *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack->next != NULL)
+	while (*str)
 	{
-		stack = stack->next;
-		i++;
+		i = ft_putchar(*str, i);
+		if (i == -1)
+			return (-1);
+		str++;
 	}
 	return (i);
 }

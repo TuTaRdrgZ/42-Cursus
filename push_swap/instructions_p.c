@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	pa(t_stack **stack_a, t_stack **stack_b)
+int	pa(t_list **stack_a, t_list **stack_b)
 {
 	if (!((*stack_b)->next))
 		return (-1);
@@ -21,7 +21,7 @@ int	pa(t_stack **stack_a, t_stack **stack_b)
 	return (0);
 }
 
-int	pb(t_stack **stack_b, t_stack **stack_a)
+int	pb(t_list **stack_b, t_list **stack_a)
 {
 	if (!((*stack_a)->next))
 		return (-1);
@@ -30,7 +30,7 @@ int	pb(t_stack **stack_b, t_stack **stack_a)
 	return (0);
 }
 
-int	pp(t_stack **stack_a, t_stack **stack_b)
+int	pp(t_list **stack_a, t_list **stack_b)
 {
 	int	tmp_value;
 

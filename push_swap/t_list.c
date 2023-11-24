@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_stack.c                                          :+:      :+:    :+:   */
+/*   t_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-t_stack	*ft_lstnew(int value)
+t_list	*ft_lstnew(int value)
 {
-	t_stack	*new;
+	t_list	*new;
 
-	new = (t_stack *)malloc(sizeof(*new));
+	new = (t_list *)malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->value = value;
@@ -25,15 +25,15 @@ t_stack	*ft_lstnew(int value)
 	return (new);
 }
 
-void	ft_lstadd_front(t_stack **stack, t_stack *new)
+void	ft_lstadd_front(t_list **stack, t_list *new)
 {
 	new->next = *stack;
 	*stack = new;
 }
 
-t_stack	*ft_lstlast(t_stack *head)
+t_list	*ft_lstlast(t_list *head)
 {
-	t_stack	*tmp;
+	t_list	*tmp;
 
 	tmp = head;
 	while (tmp->next)
@@ -45,9 +45,9 @@ t_stack	*ft_lstlast(t_stack *head)
 	return (tmp);
 }
 
-void	ft_lstadd_back(t_stack **stack, t_stack *new)
+void	ft_lstadd_back(t_list **stack, t_list *new)
 {
-	t_stack	*n;
+	t_list	*n;
 
 	if (*stack)
 	{
@@ -62,10 +62,10 @@ void	ft_lstadd_back(t_stack **stack, t_stack *new)
 	}
 }
 
-int	ft_lstsize(t_stack *head)
+int	ft_lstsize(t_list *head)
 {
 	size_t	i;
-	t_stack	*tmp;
+	t_list	*tmp;
 
 	tmp = head;
 	i = 0;

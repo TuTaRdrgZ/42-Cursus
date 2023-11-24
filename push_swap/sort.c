@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-int	swap(t_stack **stack)
+int	swap(t_list **stack)
 {
-	t_stack	*head;
-	t_stack	*next;
+	t_list	*head;
+	t_list	*next;
 	int		tmp_val;
 	int		tmp_index;
 
@@ -34,11 +34,11 @@ int	swap(t_stack **stack)
 	return (0);
 }
 
-int	push(t_stack **stack_to, t_stack **stack_from)
+int	push(t_list **stack_to, t_list **stack_from)
 {
-	t_stack	*tmp;
-	t_stack	*head_to;
-	t_stack	*head_from;
+	t_list	*tmp;
+	t_list	*head_to;
+	t_list	*head_from;
 
 	if (ft_lstsize(*stack_from) == 0)
 		return (-1);

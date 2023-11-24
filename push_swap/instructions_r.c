@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void	ra(t_stack **stack_a)
+void	ra(t_list **stack_a)
 {
-	t_stack	*first_node;
+	t_list	*first_node;
 	if (!((*stack_a)->next) || !stack_a)
 		return ;
 	first_node = *stack_a;
@@ -25,9 +25,9 @@ void	ra(t_stack **stack_a)
 	first_node->next = NULL;
 }
 
-void rb(t_stack **stack)
+void rb(t_list **stack)
 {
-	t_stack	*first_node;
+	t_list	*first_node;
     if (!(*stack) || !(*stack)->next)
         return; // La pila debe tener al menos dos elementos
     first_node = *stack;
@@ -38,7 +38,7 @@ void rb(t_stack **stack)
     first_node->next = NULL;
 }
 
-void rr(t_stack **stack_a, t_stack **stack_b)
+void rr(t_list **stack_a, t_list **stack_b)
 {
     ra(stack_a);
     rb(stack_b);

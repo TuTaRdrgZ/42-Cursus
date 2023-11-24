@@ -1,48 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   unsigned_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 19:03:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/22 17:44:15 by bautrodr         ###   ########.fr       */
+/*   Created: 2023/09/24 22:32:48 by bautrodr          #+#    #+#             */
+/*   Updated: 2023/09/26 10:00:13 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/ft_printf.h"
 
-void	ft_free_stack(t_list *stack)
+int	unsigned_int(unsigned int nb, int i)
 {
-	t_list	*tmp;
-
-	while (stack)
+	if (nb > 9)
 	{
-		tmp = stack->next;
-		free(stack);
-		stack = tmp;
+		i = ft_putnbr(nb / 10, i);
+		i = ft_putnbr(nb % 10, i);
 	}
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	ft_lstsize(t_list *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack->next != NULL)
-	{
-		stack = stack->next;
-		i++;
-	}
+	else
+		i = ft_putchar(nb + '0', i);
 	return (i);
 }
