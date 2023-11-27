@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:49:24 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/24 14:41:42 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:40:57 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,30 @@ int	ft_isnum(char *str)
 	return (i);
 }
 
-void	ft_check_args(int argc, char **argv)
+int	already_exist(char **argv)
+{
+	int	i;
+	int	num;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (argv[i])
+	{
+		num = ft_atoi(argv[i]);
+		j = i + 1;
+		while (argv[j])
+		{
+			if (num == ft_atoi(argv[j]))
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_args(int argc, char **argv)
 {
 	int		i;
 	long	tmp;
@@ -44,13 +67,16 @@ void	ft_check_args(int argc, char **argv)
 	}
 	while (args[i])
 	{
-		tmp = ft_atoi(args[i]);
+		tmp = ft_atol(args[i]);
 		if (!ft_isnum(args[i]))
-			ft_error("Error");
+			return (ft_error("Error"), -1);
+		if (already_exist(args))
+			return (ft_error("Error"), -1);
 		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_error("Error");
+			return (ft_error("Error"), -1);
 		i++;
 	}
 	if (argc == 2)
 		ft_free(args);
+	return (0);
 }
