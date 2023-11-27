@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:01:39 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/24 15:51:20 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:33:56 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ static void	init_list(t_list **stack, int argc, char **argv)
 static void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	if (ft_lstsize(*stack_a) <= 5)
-		simple_sort(stack_a, stack_b);
+		short_sort(stack_a, stack_b);
 	else
-		return ;
-		//radix_sort(stack_a, stack_b);
+		radix_sort(stack_a, stack_b, 0);
 }
 
 int	main(int argc, char **argv)

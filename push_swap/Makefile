@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/24 15:36:40 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/27 16:34:16 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRCS = push_swap.c \
 	instructions_r.c \
 	instructions_rr.c \
 	t_list.c \
+	sort_2_to_5.c \
+	short_sort.c \
+	big_sort.c \
 	index.c
 
 INCLUDE_LIBFT = ./libft/libft.a 
@@ -39,7 +42,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
 	make -C $(PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf 
 
 clean:
 	make -C $(LIBFT_DIR) clean

@@ -6,39 +6,46 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:58:17 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/24 14:45:07 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:35:41 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list *get_next_min(t_list **stack)
+static t_list	*get_next_min(t_list **stack)
 {
-    t_list *head;
-    t_list *min;
+	t_list	*head;
+	t_list	*min;
+	int		has_min;
 
 	min = NULL;
+	has_min = 0;
 	head = *stack;
-    while (head)
-    {
-        if (head->index == -1 && (!min || head->value < min->value))
-            min = head;
-        head = head->next;
-    }
-    return min;
+	if (head)
+	{
+		while (head)
+		{
+			if ((head->index == -1) && (!has_min || head->value < min->value))
+			{
+				min = head;
+				has_min = 1;
+			}
+			head = head->next;
+		}
+	}
+	return (min);
 }
 
-void index_stack(t_list **stack)
+void	index_stack(t_list **stack)
 {
-    t_list *head;
-    int index;
+	t_list	*head;
+	int		index;
 
 	index = 0;
-	head = *stack;
-    while (head)
-    {
-        if (head->index == -1)
-            head->index = index++;
-        head = head->next;
-    }
+	head = get_next_min(stack);
+	while (head)
+	{
+		head->index = index++;
+		head = get_next_min(stack);
+	}
 }
