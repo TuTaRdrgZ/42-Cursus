@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:13:00 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/27 14:56:03 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:32:13 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_error(char *msg)
 {
-	ft_putendl_fd(msg, 1);
-	exit(0);
+	ft_putendl_fd(msg, 2);
 }
 
 void	ft_free(char **str)

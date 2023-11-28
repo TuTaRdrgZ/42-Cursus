@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:01:39 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/27 20:29:24 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:28:12 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	main(int argc, char **argv)
 	t_list	**stack_a;
 	t_list	**stack_b;
 
-	if (argc < 2)
-		return (-1);
-	if (ft_check_args(argc, argv) == -1)
+	if (argc < 2 || !argv[1][0] || (argv[1][0] == '-' && !argv[2]))
+		return (ft_error("Error"), -1);
+	if (ft_check_args(argc, argv) == -1 || (ft_isnum(argv[1]) && !argv[2]))
 		return (-1);
 	stack_a = (t_list **)malloc(sizeof(t_list));
 	stack_b = (t_list **)malloc(sizeof(t_list));

@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:31:19 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/27 15:59:57 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/28 12:29:22 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ void	sort_five_nodes(t_list **stack_a, t_list **stack_b)
 		ra(stack_a);
 	}
 	else if (distance == 3)
+	{
+		rra(stack_a);
+		rra(stack_a);
+	}
+	else if (distance == 4)
 		rra(stack_a);
 	if (is_sorted(stack_a))
 		return ;
