@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/27 16:34:16 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/28 16:33:52 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,7 @@ SRCS = push_swap.c \
 	index.c
 
 INCLUDE_LIBFT = ./libft/libft.a 
-INCLUDE_FT_PRINTF = ./ft_printf/ft_printf.a
 LIBFT_DIR = ./libft
-PRINTF_DIR = ./ft_printf
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -41,17 +39,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	make -C $(PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf 
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft 
 
 clean:
 	make -C $(LIBFT_DIR) clean
-	make -C $(PRINTF_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
-	make -C $(PRINTF_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
