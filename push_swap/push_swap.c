@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:01:39 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/28 14:28:12 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:55:55 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,13 @@ static void	init_list(t_list **stack, int argc, char **argv)
 	char	**args;
 	int		i;
 
-	i = 0;
-	if (argc == 2)
-		args = ft_split(argv[1], ' ');
-	else
-	{
-		i = 1;
-		args = argv;
-	}
+	i = 1;
+	args = argv;
 	while (args[i])
 	{
 		new = ft_lstnew(ft_atoi(args[i]));
+		if (!new)
+			return ;
 		ft_lstadd_back(stack, new);
 		i++;
 	}
@@ -49,8 +45,7 @@ int	main(int argc, char **argv)
 {
 	t_list	**stack_a;
 	t_list	**stack_b;
-
-	if (argc < 2 || !argv[1][0] || (argv[1][0] == '-' && !argv[2]))
+	if (!argv[1][0] || argc < 2 || (argv[1][0] == '-' && !argv[2]))
 		return (ft_error("Error"), -1);
 	if (ft_check_args(argc, argv) == -1 || (ft_isnum(argv[1]) && !argv[2]))
 		return (-1);
