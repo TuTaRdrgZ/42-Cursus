@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/28 16:33:52 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/29 10:40:01 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ all: $(NAME)
 .c.o:
 	$(CC) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) Makefile push_swap.h $(LIBFT_DIR)/libft.h
 	make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft 
 
