@@ -6,13 +6,13 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 12:15:30 by bautrodr          #+#    #+#              #
-#    Updated: 2023/11/29 12:32:29 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/11/29 13:13:09 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 SRCS = push_swap.c \
-	sort.c \
+	swap_push.c \
 	more_utils.c \
 	util.c \
 	check_args.c \
