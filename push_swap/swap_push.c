@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:29:28 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/27 11:01:22 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:20:35 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	swap(t_list **stack)
 		return (-1);
 	head = *stack;
 	next = head->next;
-	if (!head && !next)
-		ft_error("Error occured while swapping!");
 	tmp_val = head->value;
 	tmp_index = head->index;
 	head->value = next->value;
