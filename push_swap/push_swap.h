@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:51:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/27 20:30:29 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:48:59 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		push(t_list **stack_to, t_list **stack_from);
 int		swap(t_list **stack);
 int		min_index(t_list **stack, int prev_min);
 
-int		get_distance(t_list **stack, int index);
+int		distance_to_min(t_list **stack, int index);
 long	ft_atol(const char *str);
 int		sa(t_list **stack_a);
 int		sb(t_list **stack_b);

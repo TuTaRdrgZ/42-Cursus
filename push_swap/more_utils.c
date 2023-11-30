@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:13:00 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/28 13:32:13 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:49:13 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_sorted(t_list **stack)
 	return (1);
 }
 
-int	get_distance(t_list **stack, int index)
+int	distance_to_min(t_list **stack, int index)
 {
 	t_list	*head;
 	int		distance;

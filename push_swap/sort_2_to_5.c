@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:31:19 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/28 12:29:22 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:49:11 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	sort_four_nodes(t_list **stack_a, t_list **stack_b)
 
 	if (is_sorted(stack_a))
 		return ;
-	distance = get_distance(stack_a, min_index(stack_a, -1));
+	distance = distance_to_min(stack_a, min_index(stack_a, -1));
 	if (distance == 1)
 		ra(stack_a);
 	else if (distance == 2)
@@ -94,7 +94,7 @@ void	sort_five_nodes(t_list **stack_a, t_list **stack_b)
 
 	if (is_sorted(stack_a))
 		return ;
-	distance = get_distance(stack_a, min_index(stack_a, -1));
+	distance = distance_to_min(stack_a, min_index(stack_a, -1));
 	if (distance == 1)
 		ra(stack_a);
 	else if (distance == 2)
