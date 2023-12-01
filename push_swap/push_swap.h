@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 18:51:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/30 09:48:59 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:55:33 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	index_stack(t_list **stack);
 void	ft_error(char *msg);
 void	ft_free(char **str);
 void	index_stack(t_list **stack);
-void	free_stack(t_list **stack);
+void	free_stacks(t_list **stack_a, t_list **stack_b);
 int		ft_check_args(int argc, char **argv);
 void	ft_free_stack(t_list *stack);
 void	ft_add_back(t_list **stack, int nb);

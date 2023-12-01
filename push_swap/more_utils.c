@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 15:13:00 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/11/30 09:49:13 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:58:24 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,27 @@ void	ft_free(char **str)
 		free(str[i--]);
 }
 
-void	free_stack(t_list **stack)
+void	free_stacks(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*head;
 	t_list	*tmp;
 
-	head = *stack;
+	head = *stack_a;
 	while (head)
 	{
 		tmp = head;
 		head = head->next;
 		free(tmp);
 	}
-	free(stack);
+	free(stack_a);
+	head = *stack_b;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	free(stack_b);
 }
 
 int	is_sorted(t_list **stack)
