@@ -6,67 +6,76 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:08:29 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/04 16:35:48 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:49:01 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	setup_pipes(int pipe_fd[])
+int	error_fd(char *str, int fd)
 {
-	if (pipe(pipe_fd) == -1)
-	{
-		perror("pipe");
-		exit(EXIT_FAILURE);
-	}
+	int	i;
+
+	i = 0;
+	while (str[i])
+		write(fd, &str[i++], 1);
+	write(fd, "\n", 1);
+	return (-1);
 }
 
-void	file_to_pipe(int pipe_fd[], char *file)
+char	*path(char **envp)
 {
-	int	fd;
+	int	i;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error opening file");
-		exit(EXIT_FAILURE);
-	}
-	dup2(fd, STDIN_FILENO);
-	close(fd);
+	i = 0;
+	while (ft_strncmp("PATH", envp[i], 4))
+		i++;
+	return (envp[i] + 5);
 }
 
-void	pipe_to_file(int pipe_fd[], char *file)
+char	*cmd(char **paths, char *cmd)
 {
-	int	fd;
+	char	*tmp;
+	char	*command;
 
-	fd = open(file, O_WRONLY | O_CREAT, 0777);
-	if (fd == -1)
+	while (*paths)
 	{
-		perror("Error opening file");
-		exit(EXIT_FAILURE);
+		tmp = ft_strjoin(*paths, "/");
+		command = ft_strjoin(tmp, cmd);
+		free(tmp);
+		if (access(command, 0) == 0)
+			return (command);
+		free(command);
+		paths++;
 	}
-	dup2(fd, STDOUT_FILENO);
-	close(fd);
+	return (NULL);
 }
 
-void	execute_command(char *cmd, char *const args[])
+void	parent_free(t_pipe *pipex)
 {
-	pid_t	pid;
+	int	i;
 
-	pid = fork();
-	if (pid == -1)
+	i = 0;
+	close(pipex->infile);
+	close(pipex->outfile);
+	while (pipex->cmd_paths[i])
 	{
-		perror("fork");
-		exit(EXIT_FAILURE);
+		free(pipex->cmd_paths[i]);
+		i++;
 	}
-	else if (pid == 0)
+	free(pipex->cmd_paths);
+}
+
+void	child_free(t_pipe *pipex)
+{
+	int	i;
+
+	i = 0;
+	while (pipex->cmd_args[i])
 	{
-		if (execve(cmd, args, NULL) == -1)
-		{
-			perror("execve");
-			exit(EXIT_FAILURE);
-		}
+		free(pipex->cmd_args[i]);
+		i++;
 	}
-	else
-		wait(NULL); 
+	free(pipex->cmd_args);
+	free(pipex->cmd);
 }
