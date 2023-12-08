@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:22:50 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/07 13:52:40 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:37:46 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,8 @@ int	main(int argc, char **argv, char **envp)
 	pipex.cmd_paths = ft_split(pipex.paths, ':');
 	if ((pipex.pid1 = fork()) == -1)
 		return (error_fd("Fork failed", 2));
-	child_process(pipex, argv, envp);
-	if ((pipex.pid2 = fork()) == -1)
-		return (error_fd("Fork failed", 2));
+	if (pipex.pid1 == 0)
+		child_process(pipex, argv, envp);
 	parent_process(pipex, argv, envp);
 	close_pipes(&pipex);
 	waitpid(pipex.pid1, NULL, 0);
