@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:24:19 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/07 14:43:15 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:25:49 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 
 typedef struct s_pipe
 {
-	pid_t	pid1;
-	pid_t	pid2;
+	pid_t	pid;
 	int		pipe_fd[2];
 	int		infile;
 	int		outfile;

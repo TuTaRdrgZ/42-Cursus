@@ -6,19 +6,19 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:22:50 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/09 12:20:18 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/09 13:01:14 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	close_pipes(t_pipe *pipex)
+static void	close_pipes(t_pipe *pipex)
 {
 	close(pipex->pipe_fd[0]);
 	close(pipex->pipe_fd[1]);
 }
 
-void	child_process(t_pipe pipex, char **argv, char **envp)
+static void	child_process(t_pipe pipex, char **argv, char **envp)
 {
 	dup2(pipex.pipe_fd[1], 1);
 	close(pipex.pipe_fd[0]);
@@ -34,7 +34,7 @@ void	child_process(t_pipe pipex, char **argv, char **envp)
 	execve(pipex.cmd, pipex.cmd_args, envp);
 }
 
-void	parent_process(t_pipe pipex, char **argv, char **envp)
+static void	parent_process(t_pipe pipex, char **argv, char **envp)
 {
 	dup2(pipex.pipe_fd[0], 0);
 	close(pipex.pipe_fd[1]);
@@ -64,15 +64,14 @@ int	main(int argc, char **argv, char **envp)
 		return (error_fd("Pipe failed", 2));
 	pipex.paths = path(envp);
 	pipex.cmd_paths = ft_split(pipex.paths, ':');
-	pipex.pid1 = fork();
-	if (pipex.pid1 == -1)
+	pipex.pid = fork();
+	if (pipex.pid == -1)
 		return (error_fd("Fork failed", 2));
-	if (pipex.pid1 == 0)
+	if (pipex.pid == 0)
 		child_process(pipex, argv, envp);
 	parent_process(pipex, argv, envp);
 	close_pipes(&pipex);
-	waitpid(pipex.pid1, NULL, 0);
-	waitpid(pipex.pid2, NULL, 0);
+	waitpid(pipex.pid, NULL, 0);
 	parent_free(&pipex);
 	return (0);
 }
