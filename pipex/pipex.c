@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 12:22:50 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/08 18:37:46 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:20:18 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	main(int argc, char **argv, char **envp)
 		return (error_fd("Pipe failed", 2));
 	pipex.paths = path(envp);
 	pipex.cmd_paths = ft_split(pipex.paths, ':');
-	if ((pipex.pid1 = fork()) == -1)
+	pipex.pid1 = fork();
+	if (pipex.pid1 == -1)
 		return (error_fd("Fork failed", 2));
 	if (pipex.pid1 == 0)
 		child_process(pipex, argv, envp);
