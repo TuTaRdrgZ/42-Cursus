@@ -6,12 +6,12 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 12:19:05 by bautrodr          #+#    #+#              #
-#    Updated: 2023/12/04 13:22:10 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/12/09 12:01:02 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-SRCS = main.c \
+SRCS = pipex.c \
 	   utils.c
 INCLUDE_LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
