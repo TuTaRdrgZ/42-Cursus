@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:08:29 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/09 12:32:49 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/12 09:56:42 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	error_fd(char *str, int fd)
 	while (str[i])
 		write(fd, &str[i++], 1);
 	write(fd, "\n", 1);
+	exit(EXIT_FAILURE);
 	return (-1);
 }
 
