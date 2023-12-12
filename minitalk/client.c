@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:49 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/12 12:46:37 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:50:31 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	send_sig_bits(char ch_msg, pid_t server_pid)
 		else
 			kill(server_pid, SIGUSR2);
 		--bits;
-		usleep(500);
+		usleep(75);
 	}
 }
 
