@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:49 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/12 15:50:31 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:15:47 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	send_sig_bits(char ch_msg, pid_t server_pid)
 		else
 			kill(server_pid, SIGUSR2);
 		--bits;
-		usleep(75);
+		usleep(100);
 	}
 }
 
@@ -39,7 +39,9 @@ int	main(int argc, char **argv)
 			send_sig_bits(argv[2][i], ft_atoi(argv[1]));
 	}
 	else
-		ft_putendl_fd("Incorrect arguments,\
-			   	correct use:\t./client <PID> <msg>\n", 2);
+	{
+		ft_putendl_fd("Incorrect arguments!!\n", 2);
+		ft_putendl_fd("correct use: ./client <PID> <msg>\n", 2);
+	}
 	return (0);
 }

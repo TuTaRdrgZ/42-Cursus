@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:41 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/12 13:46:07 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/13 15:14:20 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,19 @@
 
 void	handler(int sig)
 {
-	static int				bite = 0;
-	static unsigned char	ch = '\0';
+    static	int				bite = 0;
+    static	unsigned char	ch = '\0';
 
-	ch <<= 1;
-	if (sig == SIGUSR1)
-		ch |= 1;
-	bite++;
-	if (bite == 8)
-	{
-		if ((int)ch <= 126)
-			ft_putchar_fd(ch, 1);
-		else if ((int)ch >= 127)
-			ft_putchar_fd(ch, 1);
-		bite = 0;
-		ch = '\0';
-	}
+    if (sig == SIGUSR1)
+        ch |= (1 << (7 - bite));
+    bite++;
+    if (bite == 8)
+    {
+        if (ch != '\0')
+            ft_putchar_fd(ch, 1);
+        bite = 0;
+        ch = '\0';
+    }
 }
 
 void	ft_putserver_pid(char *str, int server_pid)
