@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:41 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/13 15:14:20 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/13 18:33:42 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	handler(int sig)
 {
-    static	int				bite = 0;
-    static	unsigned char	ch = '\0';
+	static int				bit = 0;
+    static unsigned	char	ch = '\0';
 
     if (sig == SIGUSR1)
-        ch |= (1 << (7 - bite));
-    bite++;
-    if (bite == 8)
+        ch |= (1 << (7 - bit));
+    bit++;
+    if (bit == 8)
     {
         if (ch != '\0')
-            ft_putchar_fd(ch, 1);
-        bite = 0;
-        ch = '\0';
+			ft_putchar_fd(ch, 1);
+		bit = 0;
+		ch = '\0';
     }
 }
 
-void	ft_putserver_pid(char *str, int server_pid)
+static void	ft_printserver_pid(char *str, int server_pid)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int	main(void)
 	if (!server_pid)
 		ft_putendl_fd("No Server PID", 2);
 	else
-		ft_putserver_pid("Server PID--> ", server_pid);
+		ft_printserver_pid("Server PID--> ", server_pid);
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);

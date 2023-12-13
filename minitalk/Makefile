@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/12 11:36:06 by bautrodr          #+#    #+#              #
-#    Updated: 2023/12/12 15:01:09 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/12/13 18:35:45 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CLI = client
 SRCS = server.c client.c utils.c
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(SRV) $(CLI)
 
