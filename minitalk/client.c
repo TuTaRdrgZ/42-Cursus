@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:49 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/13 15:15:47 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:31:00 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		ft_putendl_fd("Incorrect arguments!!\n", 2);
-		ft_putendl_fd("correct use: ./client <PID> <msg>\n", 2);
+		ft_putendl_fd("Correct use: ./client <PID> <msg>\n", 1);
 	}
 	return (0);
 }

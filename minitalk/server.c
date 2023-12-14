@@ -6,27 +6,27 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:41 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/13 18:33:42 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/14 10:26:53 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	handler(int sig)
+static void	signal_handler(int sig)
 {
 	static int				bit = 0;
-    static unsigned	char	ch = '\0';
+	static unsigned char	ch = '\0';
 
-    if (sig == SIGUSR1)
-        ch |= (1 << (7 - bit));
-    bit++;
-    if (bit == 8)
-    {
-        if (ch != '\0')
+	if (sig == SIGUSR1)
+		ch |= (1 << (7 - bit));
+	bit++;
+	if (bit == 8)
+	{
+		if (ch != '\0')
 			ft_putchar_fd(ch, 1);
 		bit = 0;
 		ch = '\0';
-    }
+	}
 }
 
 static void	ft_printserver_pid(char *str, int server_pid)
@@ -53,7 +53,7 @@ int	main(void)
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
-	sa.sa_handler = handler;
+	sa.sa_handler = signal_handler;
 	sa.sa_flags = SA_RESTART;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		exit(EXIT_FAILURE);
