@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:44:01 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/16 17:18:55 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:03:23 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,26 @@ int	check_filetype(char *str)
 	return (0);
 }
 
-int	check_repeated(char **map, int i, int j)
+int	check_repeated(t_game *game, int i, int j)
 {
 	int	p_counter;
 	int e_counter;
 
 	p_counter = 0;
 	e_counter = 0;
-	while (map[i])
+	while (i < game->map_rows)
 	{
 		j = 0;
-		while (map[i][j])
+		while (game->map[i][j])
 		{
-			if (map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 				p_counter++;
-			if (map[i][j] == 'E')
+			if (game->map[i][j] == 'E')
+			{
+				game->exit_x = i;
+				game->exit_y = j;
 				e_counter++;
+			}
 			j++;
 		}
 		i++;

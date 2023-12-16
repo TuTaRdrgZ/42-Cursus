@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/16 17:37:46 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:08:28 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,58 @@ void	fill_map(t_game *game, int lines, char *map)
 	i = 1;
 	file = open(map, O_RDWR);
 	game->map = malloc(sizeof(char *) * (lines + 1));
+	if (!game->map)
+		return ;
 	game->map[0] = get_next_line(file);
 	while (i < lines)
 	{
 		game->map[i] = get_next_line(file);
 		i++;
 	}
-	if (!check_map(game, map))
-		exit(EXIT_FAILURE);
+	if (check_map(game, map) == -1)
+		destroy_program(game);
+	//check for valid path
+	close(file);
+}
+
+void	print_map(char *line, t_game *game, int index)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '1')
+			mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.wall, i * 32, (index * 32));
+		else if (line[i] == '0')
+			mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.floor, i * 32, (index * 32));
+		else if (line[i] == 'C')
+			mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.coin, i * 32, (index * 32));
+		else if (line[i] == 'E')
+			mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.closed_door, i * 32, (index * 32));
+		else if (line[i] == 'P')
+			mlx_put_image_to_window(game->mlx, game->window, \
+		game->player.player_down, i * 32, (index * 32));
+			//put_player(game, i, index);
+		i++;
+	}
+}
+
+void	add_graphics(t_game *game)
+{
+	int		i;
+
+	i = 0;
+	game->score = 0;
+	while (game->map[i] != NULL)
+	{
+		print_map(game->map[i], game, i);
+		i++;
+	}
 }
 
 int	init_map(char *map, t_game *game, int linecount)
@@ -35,6 +79,7 @@ int	init_map(char *map, t_game *game, int linecount)
 	int		file;
 	char	*line;
 
+	line = NULL;
 	file = open(map, O_RDWR);
 	if (file == -1)
 	{
