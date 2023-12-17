@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/16 21:08:28 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/17 17:46:00 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,13 @@ void	print_map(char *line, t_game *game, int index)
 			mlx_put_image_to_window(game->mlx, game->window, \
 		game->textures.closed_door, i * 32, (index * 32));
 		else if (line[i] == 'P')
+		{
+			mlx_put_image_to_window(game->mlx, game->window, \
+		game->textures.floor, i * 32, (index * 32));
 			mlx_put_image_to_window(game->mlx, game->window, \
 		game->player.player_down, i * 32, (index * 32));
+
+		}
 			//put_player(game, i, index);
 		i++;
 	}

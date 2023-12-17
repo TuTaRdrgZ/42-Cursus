@@ -6,14 +6,16 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 14:10:25 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/16 21:03:56 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/17 17:53:00 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+
 void	init_img(t_game *game)
 {
+	//agregar ifs por si fallan
 	game->textures.wall = mlx_xpm_file_to_image(game->mlx, \
 			"img/wall.xpm", &game->width, &game->height);
 	game->textures.floor = mlx_xpm_file_to_image(game->mlx, \
