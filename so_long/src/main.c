@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 19:18:08 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/17 18:09:25 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:32:42 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int main(int argc, char **argv)
 	game->window = mlx_new_window(game->mlx, (game->map_col - 1) * 32, \
 		(game->map_rows + 1) * 32, "so_long");
 	mlx_key_hook(game->window, key_hook, game);
-	
 	add_graphics(game);
 	mlx_hook(game->window, 17, 0, destroy_program, game);
 	mlx_loop(game->mlx);

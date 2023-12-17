@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 19:18:14 by bautrodr          #+#    #+#              #
-#    Updated: 2023/12/16 18:09:56 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/12/17 19:31:21 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS = ./src/main.c \
 	   ./src/check_map.c \
 	   ./src/map.c \
 	   ./src/standard_img.c \
-	   ./src/more_checks.c
+	   ./src/more_checks.c \
+	   ./src/player_movement.c 
 OBJS = $(SRCS:.c=.o)
 GET_NEXT_LINE = get_next_line/get_next_line.c \
 				get_next_line/get_next_line_utils.c
