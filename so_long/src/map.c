@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:15:59 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:07:59 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ void	fill_map(t_game *game, int lines, char *map)
 		i++;
 	}
 	if (check_map(game, map) == -1)
-		destroy_program(game);
-	//check for valid path
+		exit(EXIT_FAILURE);
+	if (valid_path(game) == 1)
+	{
+		free_map(game);
+		write(1, "Error\nNo valid path\n", 20);
+		exit(EXIT_FAILURE);
+	}
 	close(file);
 }
 

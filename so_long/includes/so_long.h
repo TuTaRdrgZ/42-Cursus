@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:07:34 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:30:19 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:20:12 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_game
 	int			x;
 	int			y;
 	int			coins;
+	int			flood_fill_coins;
 	int			score;
 	int			player_pos;
 	int			map_col;
@@ -69,7 +70,7 @@ typedef struct	s_game
 //free
 int		destroy_program(t_game *game);
 void	free_map(t_game *game);
-
+void	free_visited(int **visited, t_game *game);
 //graphics
 void	init_img(t_game *game);
 void	add_graphics(t_game *game);
@@ -81,6 +82,10 @@ int		key_hook(int keycode, t_game *game);
 //player
 void	print_player(t_game *game, int width, int heigth);
 void	update_player_pos(t_game *game, int key);
+
+//check path
+void	flood_fill(t_game *game, int row, int col, int **visited);
+int		valid_path(t_game *game);
 // map
 int		init_map(char *map, t_game *game, int linecount);
 int		check_map(t_game *game, char *map);

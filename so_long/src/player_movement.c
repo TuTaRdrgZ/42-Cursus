@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 19:01:37 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:58:52 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:17:14 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	update_player_pos(t_game *game, int key)
 
 void	print_player(t_game *game, int width, int height)
 {
-	if (game->player_pos == RIGHT)
+	if (game->player_pos == RIGHT || game->moves == 0)
 		mlx_put_image_to_window(game->mlx, game->window, \
 		game->player.player_right, 0 + width * 32, 0 + (height * 32));
 	else if (game->player_pos == LEFT)

@@ -6,11 +6,24 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:47:58 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/16 18:15:49 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:35:41 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	free_visited(int **visited, t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map_rows)
+	{
+		free(visited[i]);
+		i++;
+	}
+	free(visited);
+}
 
 void	free_map(t_game *game)
 {
@@ -40,6 +53,8 @@ void	free_textures(t_game *game)
 
 int	destroy_program(t_game *game)
 {
+	if (game->coins == game->score && game->score > 0)
+		ft_putendl_fd("congrats u won", 1);
 	free_textures(game);
 	free_map(game);
 	mlx_destroy_window(game->mlx, game->window);
