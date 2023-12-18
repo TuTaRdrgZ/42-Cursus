@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:47:58 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 18:35:41 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:46:08 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,16 @@ int	destroy_program(t_game *game)
 	if (game->coins == game->score && game->score > 0)
 		ft_putendl_fd("congrats u won", 1);
 	free_textures(game);
-	free_map(game);
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
+	if (game->map)
+		free_map(game);
+	if (game->mlx && game->window)
+		mlx_destroy_window(game->mlx, game->window);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
+	free(game);
 	exit(0);
 	return (0);
 }

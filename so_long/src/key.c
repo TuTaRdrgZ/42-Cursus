@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 13:03:01 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:51:48 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:56:10 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	key_hook(int keycode, t_game *game)
 	//printf("%d ", keycode);
 	if (keycode == 65307)
 		destroy_program(game);
-	if (keycode == 119 || keycode == 65362) // w 
+	if (keycode == 119) // w 
 		update_player_pos(game, keycode);
-	if (keycode == 115 || keycode == 65364) // s 
+	if (keycode == 115) // s 
 		update_player_pos(game, keycode);
-	if (keycode == 97 || keycode == 65361) // a 
+	if (keycode == 97) // a 
 		update_player_pos(game, keycode);
-	if (keycode == 100 || keycode == 65363) // d 
+	if (keycode == 100) // d 
 		update_player_pos(game, keycode);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:07:34 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 18:20:12 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:26:07 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,15 @@ void	print_map(char *line, t_game *game, int index);
 //keys
 int		key_hook(int keycode, t_game *game);
 
+//print_errors
+void	print_error(t_game *game, int n);
 //player
 void	print_player(t_game *game, int width, int heigth);
 void	update_player_pos(t_game *game, int key);
 
 //check path
 void	flood_fill(t_game *game, int row, int col, int **visited);
-int		valid_path(t_game *game);
+int		valid_path(t_game *game, int i);
 // map
 int		init_map(char *map, t_game *game, int linecount);
 int		check_map(t_game *game, char *map);

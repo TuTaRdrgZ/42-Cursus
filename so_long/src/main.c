@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 19:18:08 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 18:33:50 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:23:16 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 		write(1, "Numero de argumentos incorrecto.\n", 33);
 		return (0);
 	}
-	game = malloc(sizeof(t_game));
+	game = ft_calloc(sizeof(t_game), 1);
 	if (!game)
 		return (1);
 	game->mlx = mlx_init();

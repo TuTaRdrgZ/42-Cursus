@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 18:07:59 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:26:22 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	fill_map(t_game *game, int lines, char *map)
 
 	i = 1;
 	file = open(map, O_RDWR);
-	game->map = malloc(sizeof(char *) * (lines + 1));
+	game->map = ft_calloc(sizeof(char *), (lines + 1));
 	if (!game->map)
 		return ;
 	game->map[0] = get_next_line(file);
@@ -28,14 +28,8 @@ void	fill_map(t_game *game, int lines, char *map)
 		game->map[i] = get_next_line(file);
 		i++;
 	}
-	if (check_map(game, map) == -1)
-		exit(EXIT_FAILURE);
-	if (valid_path(game) == 1)
-	{
-		free_map(game);
-		write(1, "Error\nNo valid path\n", 20);
-		exit(EXIT_FAILURE);
-	}
+	if (check_map(game, map) == -1 || valid_path(game, 0) == 1)
+		print_error(game, 4);
 	close(file);
 }
 
@@ -85,10 +79,7 @@ int	init_map(char *map, t_game *game, int linecount)
 	line = NULL;
 	file = open(map, O_RDWR);
 	if (file == -1)
-	{
-		ft_putendl_fd("Error\nMap does not exist!", 2);
-		return (1);
-	}
+		print_error(game, 1);
 	line = get_next_line(file);
 	if (line == NULL)
 		exit(EXIT_FAILURE);

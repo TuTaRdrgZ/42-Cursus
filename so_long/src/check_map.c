@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 18:17:12 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:05:16 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 int	more_checks(t_game *game, char *map)
 {
 	if (check_filetype(map) == -1)
-		return (-1);
+		print_error(game, 2);
 	if (check_repeated(game, 0, 0) == -1)
-	{
-		ft_putendl_fd("Invalid Map!", 2);
-		return (-1);
-	}
+		print_error(game, 3);
 	return (0);
 }
 
