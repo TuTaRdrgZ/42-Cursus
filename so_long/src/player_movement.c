@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 19:01:37 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 19:56:17 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:30:42 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void	move_down(t_game *game, int i, int j)
 	else if (game->map[j + 1][i] == 'E' && game->coins == game->score)
 		destroy_program(game);
 	else if (game->map[j + 1][i] == 'E')
-	{
-		//door_locked_up_down(game, j + 1, i);
 		return ;
-	}
+	if (game->score == game->coins)
+		add_graphics(game);
 	game->moves += 1;
 	game->map[j][i] = '0';
 	game->map[j + 1][i] = 'P';
@@ -40,10 +39,9 @@ void	move_up(t_game *game, int i, int j)
 	else if (game->map[j - 1][i] == 'E' && game->coins == game->score)
 		destroy_program(game);
 	else if (game->map[j - 1][i] == 'E')
-	{
-		//door_locked_up_down(game, j - 1, i);
 		return ;
-	}
+	if (game->score == game->coins)
+		add_graphics(game);
 	game->moves += 1;
 	game->map[j][i] = '0';
 	game->map[j - 1][i] = 'P';
@@ -60,10 +58,9 @@ void	move_left(t_game *game, int i, int j)
 	else if (game->map[j][i - 1] == 'E' && game->coins == game->score)
 		destroy_program(game);
 	else if (game->map[j][i - 1] == 'E')
-	{
-		//door_locked_right_left(game, j, i - 1);
 		return ;
-	}
+	if (game->score == game->coins)
+		add_graphics(game);
 	game->moves += 1;
 	game->map[j][i] = '0';
 	game->map[j][i - 1] = 'P';
@@ -80,10 +77,9 @@ void	move_right(t_game *game, int i, int j)
 	else if (game->map[j][i + 1] == 'E' && game->coins == game->score)
 		destroy_program(game);
 	else if (game->map[j][i + 1] == 'E')
-	{
-		//door_locked_right_left(game, j, i + 1);
 		return ;
-	}
+	if (game->score == game->coins)
+		add_graphics(game);
 	game->moves += 1;
 	game->map[j][i] = '0';
 	game->map[j][i + 1] = 'P';

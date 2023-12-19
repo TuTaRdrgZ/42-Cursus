@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 15:53:07 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 18:25:09 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,17 @@ void	print_map(char *line, t_game *game, int index)
 			mlx_put_image_to_window(game->mlx, game->window, \
 		game->textures.coin, i * 32, (index * 32));
 		else if (line[i] == 'E')
-			mlx_put_image_to_window(game->mlx, game->window, \
-		game->textures.closed_door, i * 32, (index * 32));
+		{
+			if (game->coins == game->score)
+				mlx_put_image_to_window(game->mlx, game->window, \
+			game->textures.opened_door, i * 32, (index * 32));
+			else	
+				mlx_put_image_to_window(game->mlx, game->window, \
+			game->textures.closed_door, i * 32, (index * 32));
+		}
 		else if (line[i] == 'P')
 			print_player(game, i, index);
+
 		i++;
 	}
 }
@@ -64,7 +71,6 @@ void	add_graphics(t_game *game)
 	int		i;
 
 	i = 0;
-	game->score = 0;
 	while (game->map[i] != NULL)
 	{
 		print_map(game->map[i], game, i);

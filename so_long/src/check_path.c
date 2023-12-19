@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:37:54 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 16:03:30 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 17:02:58 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	valid_path(t_game *game, int i, int p_row, int p_col)
 {
 	int	**visited;
 
-	visited = ft_calloc(game->map_rows, sizeof(int *)); 
+	visited = ft_calloc(game->map_rows, sizeof(int *));
 	while (i < game->map_rows)
 	{
 		visited[i] = ft_calloc(game->map_col, sizeof(int *));
@@ -90,7 +90,7 @@ int	valid_path(t_game *game, int i, int p_row, int p_col)
 		i++;
 	}
 	exit_position(game);
-	flood_fill(game, p_row, p_col, visited); 
+	flood_fill(game, p_row, p_col, visited);
 	i = visited[p_row][p_col] && visited[game->exit_y][game->exit_x];
 	free_visited(visited, game);
 	if (game->flood_fill_coins != game->coins || !i)
