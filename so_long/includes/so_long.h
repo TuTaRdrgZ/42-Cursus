@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:07:34 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 20:26:07 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:45:08 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ int		more_checks(t_game *game, char *map);
 int		check_filetype(char *str);
 int		check_repeated(t_game *game, int i, int j);
 void	print_map(char *line, t_game *game, int index);
-
+int		same_length(t_game *game);
 
 #endif
