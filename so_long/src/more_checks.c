@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:44:01 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 15:45:29 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:09:41 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,31 +56,27 @@ int	check_filetype(char *str)
 	return (-1);
 }
 
-int	check_repeated(t_game *game, int i, int j)
+void	check_repeated(t_game *game, int i, int j)
 {
-	int	p_counter;
-	int e_counter;
-
-	p_counter = 0;
-	e_counter = 0;
 	while (i < game->map_rows)
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
 			if (game->map[i][j] == 'P')
-				p_counter++;
+				game->p_counter++;
 			if (game->map[i][j] == 'E')
 			{
 				game->exit_x = i;
 				game->exit_y = j;
-				e_counter++;
+				game->e_counter++;
 			}
 			j++;
 		}
 		i++;
 	}
-	if (p_counter != 1 || e_counter != 1)
-		return (-1);
-	return (0);
+	if (game->p_counter != 1)
+		print_error(game, 10);
+	if (game->e_counter != 1)
+		print_error(game, 9);
 }

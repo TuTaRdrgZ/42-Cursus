@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:40 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 15:44:51 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:14:46 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ static int check_surroundings(t_game *game)
 
 int	more_checks(t_game *game, char *map)
 {
-	if (check_filetype(map) == -1) //revisar, creo que no hace nada aqui
+	if (check_filetype(map) == -1)
 		print_error(game, 2);
-	if (check_repeated(game, 0, 0) == -1)
-		print_error(game, 3);
+	check_repeated(game, 0, 0);
 	if (same_length(game) == -1)
 		print_error(game, 8);
 	if (check_chars(game) == -1)

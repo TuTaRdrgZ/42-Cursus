@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:07:34 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 15:53:48 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:09:52 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct	s_game
 	int			coins;
 	int			flood_fill_coins;
 	int			score;
+	int			p_counter;
+	int			e_counter;
 	int			player_pos;
 	int			map_col;
 	int			map_rows;
@@ -93,7 +95,7 @@ int		init_map(char *map, t_game *game, int linecount);
 int		check_map(t_game *game, char *map);
 int		more_checks(t_game *game, char *map);
 int		check_filetype(char *str);
-int		check_repeated(t_game *game, int i, int j);
+void	check_repeated(t_game *game, int i, int j);
 void	print_map(char *line, t_game *game, int index);
 int		same_length(t_game *game);
 
