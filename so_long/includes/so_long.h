@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:07:34 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 15:45:08 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:53:48 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	update_player_pos(t_game *game, int key);
 
 //check path
 void	flood_fill(t_game *game, int row, int col, int **visited);
-int		valid_path(t_game *game, int i);
+int		valid_path(t_game *game, int i, int p_row, int p_col);
 // map
 int		init_map(char *map, t_game *game, int linecount);
 int		check_map(t_game *game, char *map);

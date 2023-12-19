@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:37:54 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 20:26:27 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:55:26 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	flood_fill(t_game *game, int row, int col, int **visited)
 {
 	if (!valid_move(game, visited, row, col) || visited[row][col])
 		return ;
-	if (game->map[row][col] == 'C') // if it is a coin
+	if (game->map[row][col] == 'C')
 		game->flood_fill_coins += 1;
-	visited[row][col] = 1; // mark areas as visited
-	flood_fill(game, row - 1, col, visited); // up
-	flood_fill(game, row + 1, col, visited); // down
-	flood_fill(game, row, col - 1, visited); // left
-	flood_fill(game, row, col + 1, visited); // right
+	visited[row][col] = 1;
+	flood_fill(game, row - 1, col, visited);
+	flood_fill(game, row + 1, col, visited);
+	flood_fill(game, row, col - 1, visited);
+	flood_fill(game, row, col + 1, visited);
 }
 
 void	player_position(t_game *game, int i, int *player_col, int *player_row)
@@ -73,10 +73,8 @@ void	exit_position(t_game *game)
 	}
 }
 
-int	valid_path(t_game *game, int i)
+int	valid_path(t_game *game, int i, int p_row, int p_col)
 {
-	int	p_row;
-	int	p_col;
 	int	**visited;
 
 	visited = ft_calloc(game->map_rows, sizeof(int *)); 
@@ -95,7 +93,9 @@ int	valid_path(t_game *game, int i)
 	flood_fill(game, p_row, p_col, visited); 
 	i = visited[p_row][p_col] && visited[game->exit_y][game->exit_x];
 	free_visited(visited, game);
-	if (game->flood_fill_coins != game->coins || !i || game->flood_fill_coins == 0)
+	if (game->flood_fill_coins != game->coins || !i)
 		print_error(game, 5);
+	if (game->flood_fill_coins == 0)
+		print_error(game, 3);
 	return (0);
 }

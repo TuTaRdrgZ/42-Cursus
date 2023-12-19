@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/18 20:26:22 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:53:07 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	fill_map(t_game *game, int lines, char *map)
 		game->map[i] = get_next_line(file);
 		i++;
 	}
-	if (check_map(game, map) == -1 || valid_path(game, 0) == 1)
+	if (check_map(game, map) == -1)
 		print_error(game, 4);
+	valid_path(game, 0, 0, 0);
 	close(file);
 }
 
