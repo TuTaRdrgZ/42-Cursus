@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:07:34 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/20 13:02:19 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:31:37 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # define UP 3
 # define DOWN 4
 
-//# include "../mlx/mlx_linux/mlx.h"
-# include "../mlx/mlx_mac/mlx.h"
+# include "../mlx/mlx_linux/mlx.h"
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include<unistd.h>
