@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 19:18:14 by bautrodr          #+#    #+#              #
-#    Updated: 2023/12/20 17:27:48 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/12/20 17:30:53 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ INCLUDE_LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 SO_LONG_LIB = ./includes/so_long.h
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
