@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:47:58 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/20 16:42:37 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:21:35 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_visited(int **visited, t_game *game)
 void	free_map(t_game *game)
 {
 	int	i;
-	
+
 	i = 0;
 	while (game->map[i])
 	{

@@ -6,7 +6,7 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 19:18:14 by bautrodr          #+#    #+#              #
-#    Updated: 2023/12/20 16:44:20 by bautrodr         ###   ########.fr        #
+#    Updated: 2023/12/20 17:24:52 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS = ./src/main.c \
 	   ./src/standard_img.c \
 	   ./src/more_checks.c \
 	   ./src/player_movement.c \
-	   ./src/print_error.c
+	   ./src/print_error.c \
+	   ./src/print_player.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(addsuffix .d, $(basename $(SRCS)))
