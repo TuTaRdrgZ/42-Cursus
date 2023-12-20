@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:35:52 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/20 11:47:32 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:29:19 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,34 @@ void	fill_map(t_game *game, int lines, char *map)
 	close(file);
 }
 
+static void	open_or_closed(t_game *game, int i, int index)
+{
+	if (game->coins == game->score)
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->textures.opened_door, i * 32, (index * 32));
+	else
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->textures.closed_door, i * 32, (index * 32));
+}
+
 void	print_map(char *line, t_game *game, int index)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (line[i])
 	{
 		if (line[i] == '1')
-			mlx_put_image_to_window(game->mlx, game->window, \
-		game->textures.wall, i * 32, (index * 32));
+			mlx_put_image_to_window(game->mlx, game->window,
+				game->textures.wall, i * 32, (index * 32));
 		else if (line[i] == '0')
-			mlx_put_image_to_window(game->mlx, game->window, \
-		game->textures.floor, i * 32, (index * 32));
+			mlx_put_image_to_window(game->mlx, game->window,
+				game->textures.floor, i * 32, (index * 32));
 		else if (line[i] == 'C')
-			mlx_put_image_to_window(game->mlx, game->window, \
-		game->textures.coin, i * 32, (index * 32));
+			mlx_put_image_to_window(game->mlx, game->window,
+				game->textures.coin, i * 32, (index * 32));
 		else if (line[i] == 'E')
-		{
-			if (game->coins == game->score)
-				mlx_put_image_to_window(game->mlx, game->window, \
-			game->textures.opened_door, i * 32, (index * 32));
-			else	
-				mlx_put_image_to_window(game->mlx, game->window, \
-			game->textures.closed_door, i * 32, (index * 32));
-		}
+			open_or_closed(game, i, index);
 		else if (line[i] == 'P')
 			print_player(game, i, index);
 		i++;
@@ -67,7 +70,7 @@ void	print_map(char *line, t_game *game, int index)
 
 void	add_graphics(t_game *game)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (game->map[i] != NULL)

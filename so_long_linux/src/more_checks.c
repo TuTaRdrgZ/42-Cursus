@@ -6,36 +6,36 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:44:01 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/19 16:09:41 by bautrodr         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:28:17 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int    same_length(t_game *game)
+int	same_length(t_game *game)
 {
-    int    i;
-    int    j;
-    int    len;
+	int	i;
+	int	j;
+	int	len;
 
-    i = 0;
-    j = 0;
-    len = 0;
-    while (game->map[i][j])
-    {
-      j++;
-      len++;
-    }
-    while (game->map[i])
-    {
-        j = 0;
-        while (game->map[i][j])
-            j++;
-        if (j != len)
-            return (-1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	j = 0;
+	len = 0;
+	while (game->map[i][j])
+	{
+		j++;
+		len++;
+	}
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+			j++;
+		if (j != len)
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
 int	check_filetype(char *str)
@@ -47,8 +47,8 @@ int	check_filetype(char *str)
 	{
 		if (str[i] == '.')
 		{
-			if ((str[i + 1] == 'b') && str[i + 2] == 'e' \
-					&& str[i + 3] == 'r' && !str[i + 4])
+			if ((str[i + 1] == 'b') && str[i + 2] == 'e' && str[i + 3] == 'r'
+				&& !str[i + 4])
 				return (0);
 		}
 		i++;
