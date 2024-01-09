@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 12:49:51 by bautrodr          #+#    #+#             */
-/*   Updated: 2024/01/08 18:11:42 by bautrodr         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:00:32 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,22 @@ static void	more_init(t_program *program)
 	program->threads = malloc(program->philos->nphilos * sizeof(pthread_t));
 	if (!program->philos || !program->threads)
 		print_error("Malloc Error");
-
 }
 
-void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
-		char **argv)
+void	init_philos(t_program *program, char **argv)
 {
 	int	i;
 
 	i = 0;
-	while (i < ft_atoi(argv[1]))
+	while (i < program->philos->nphilos)
 	{
-		philos[i].id = i + 1;
-		philos[i].eating = 0;
-		philos[i].meals_eaten = 0;
-		init_input(&philos[i], argv);
-		philos[i].start_time = get_current_time();
-		philos[i].last_meal = get_current_time();
-		philos[i].write_lock = &program->write_lock;
-		philos[i].dead_lock = &program->dead_lock;
-		philos[i].meal_lock = &program->meal_lock;
-		philos[i].dead = &program->dead_flag;
-		philos[i].l_fork = &forks[i];
-		if (i == 0)
-			philos[i].r_fork = &forks[philos[i].num_of_philos - 1];
-		else
-			philos[i].r_fork = &forks[i - 1];
+		program->philos[i].id = i + 1;
+		program->philos[i].eating = 0;
+		program->philos[i].meals_counter = 0;
+		program->philos[i].dead = 0;
+		if (i != 0)
+			program->philos[i].l_fork = program->philos[i -1].r_fork;
+		program->philos[i].program = program;
 		i++;
 	}
 }
@@ -59,6 +49,7 @@ void	check_and_init(t_program *program, char **argv, int argc)
 			print_error("Only positive numbers are accepted\n");
 		i++;
 	}
+	init_philos(program, argv);
 	program->philos->dead = 0;
 	program->philos->nphilos = ft_atol(argv[1]);
 	if (program->philos->nphilos > 200)
