@@ -6,20 +6,21 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 11:38:05 by bautrodr          #+#    #+#             */
-/*   Updated: 2024/01/08 18:00:15 by bautrodr         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:59:27 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 # include <stdio.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdbool.h>
-# include <errno.h>
-# include <pthread.h>
-# include <sys/wait.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <string.h>
+# include <sys/time.h>
+
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
 
 # define RST    "\033[0m"      /* Reset to default color */
 # define RED	"\033[1;31m"   /* Bold Red */
@@ -30,39 +31,53 @@
 # define C      "\033[1;36m"   /* Bold Cyan */
 # define W      "\033[1;37m"   /* Bold White */
 
-typedef struct s_program	t_program;
+typedef struct timeval	t_timeval;
 
-typedef struct s_philo
+enum				e_state
 {
+	EATING,
+	SLEEPING,
+	THINKING,
+	DEAD
+};
+
+typedef struct		s_args
+{
+	int				philos_nb;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				time_must_eat;
+	int				death_flag;
+	int				total_meal;
+	long			initial_time;
+	pthread_mutex_t	*printer;
+}					t_args;
+
+typedef struct		s_philo
+{
+	pthread_t		philo_pid;
+	pthread_mutex_t	fork;
 	int				id;
-	int				eating;
-	int				meals_counter;
-	int				nphilos;
-	int				nbr_limit_meals;
-	int				*dead;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
-	t_program		*program;
+	int				alive;
+	int				eat_times;
+	int				first_meal;
+	long			last_meal;
+	enum e_state	state;
+	t_args			*args;
+	struct s_philo	*next;
 }					t_philo;
 
-typedef struct s_program
-{
-	int				dead_flag;
-	long			last_meal;
-	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
-	long			start_time;
-	pthread_mutex_t	start;
-	pthread_mutex_t	print;
-	t_philo			*philos;
-	pthread_t		*threads;
-}					t_program;
-
 void	print_error(char *str);
+void	print_state(char *action, useconds_t delay, t_philo *philo);
+void	*routine(void *p_data);
+void	ft_msleep(int milliseconds);
 int		is_digit_str(char *str);
 int		ft_strlen(char *str);
-long	ft_atol(const char *str);
-void	check_and_init(t_program *program, char **argv, int argc);
-int		exit_error(char *str, t_program *program);
+void	ft_memdel(void *ptr);
+void	free_philos(t_philo *head, t_args args);
+long	ft_atoi(const char *str);
+long	get_time_value(void);
+int		init_data(t_args *args, char **argv, int argc);
+t_philo	*init_philos(t_args *args);
 #endif

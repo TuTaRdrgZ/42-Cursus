@@ -6,14 +6,16 @@
 #    By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 12:35:41 by bautrodr          #+#    #+#              #
-#    Updated: 2023/12/28 13:23:38 by bautrodr         ###   ########.fr        #
+#    Updated: 2024/02/08 10:54:58 by bautrodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 SRCS = main.c \
 	   utils.c \
-	   check_input.c
+	   check_input.c \
+	   state.c \
+	   philos.c
 
 OBJS = $(SRCS:.c=.o)
 

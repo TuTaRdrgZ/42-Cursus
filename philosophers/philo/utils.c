@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 12:43:25 by bautrodr          #+#    #+#             */
-/*   Updated: 2024/01/08 18:00:27 by bautrodr         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:31:57 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,14 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-long	ft_atol(const char *str)
+void		ft_memdel(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	ptr = NULL;
+}
+
+long	ft_atoi(const char *str)
 {
 	int		i;
 	int		sign;
@@ -60,32 +67,27 @@ long	ft_atol(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + str[i++] - '0';
-	if (result > INT_MAX)
-		print_error("Max value: INT_MAX\n");
 	return (result * sign);
+}
+
+long		get_time_value(void)
+{
+	t_timeval timestamp;
+
+	gettimeofday(&timestamp, NULL);
+	return ((timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000));
+}
+
+void		ft_msleep(int milliseconds)
+{
+	long	time;
+
+	time = get_time_value();
+	while (get_time_value() < time + milliseconds)
+		usleep(milliseconds);
 }
 
 void	print_error(char *str)
 {
 	printf(RED"%s"RST, str);
-	exit(EXIT_FAILURE);
-}
-
-int	exit_error(char *str, t_program *program)
-{
-	int	i;
-
-	print_error(str);
-	pthread_mutex_destroy(&program->start);
-	pthread_mutex_destroy(&program->print);
-	i = 0;
-	while (i < program->philos->nphilos)
-	{
-		pthread_mutex_destroy(program->philos[i].r_fork);
-		//free(program->philos[i].str_num);
-		++i;
-	}
-	free(program->philos);
-	free(program->threads);
-	return (0);
 }
