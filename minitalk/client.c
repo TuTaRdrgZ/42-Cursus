@@ -6,7 +6,7 @@
 /*   By: bautrodr <bautrodr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:57:49 by bautrodr          #+#    #+#             */
-/*   Updated: 2023/12/14 10:31:00 by bautrodr         ###   ########.fr       */
+/*   Updated: 2024/02/27 22:09:01 by bautrodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int	main(int argc, char **argv)
 	i = -1;
 	if (argc == 3)
 	{
+		if (ft_atoi(argv[1]) < 0)
+		{
+			ft_putendl_fd("Invalid PID!!\n", 2);
+			return (1);
+		}
 		while (argv[2][++i])
 			send_sig_bits(argv[2][i], ft_atoi(argv[1]));
 	}
